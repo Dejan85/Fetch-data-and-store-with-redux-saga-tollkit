@@ -1,7 +1,7 @@
 import * as React from "react";
 
 const LoginPage = (): JSX.Element => {
-  const onSubmitHandler = (e: any): void => {
+  const onSubmitHandler = (e: React.SyntheticEvent<EventTarget>): void => {
     e.preventDefault();
     console.log("radi");
   };
