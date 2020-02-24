@@ -6,8 +6,8 @@ import {
 } from "./types";
 
 const initialState: initialStateInterface = {
-  username: "xad",
-  password: "123"
+  username: "",
+  password: ""
 };
 
 function reducer(
@@ -16,9 +16,9 @@ function reducer(
 ): reducerInterface {
   switch (action.type) {
     case "username":
-      return { username: action.payload };
+      return { username: action.payload, password: state.password };
     case "password":
-      return { password: action.payload };
+      return { password: action.payload, username: state.username };
     default:
       return state;
   }
@@ -27,8 +27,9 @@ function reducer(
 const LoginPage = (): JSX.Element => {
   const [state, dispatch]: [any, any] = useReducer<any>(reducer, initialState);
 
-  console.log(state.username);
-  console.log(state.password);
+  // console.log(state.username);
+  // console.log(state.password);
+  console.log(state);
 
   const onSubmitHandler = (e: React.SyntheticEvent<EventTarget>): void => {
     e.preventDefault();
@@ -44,7 +45,7 @@ const LoginPage = (): JSX.Element => {
             className="login-input"
             placeholder="username"
             value={state.username}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
               dispatch({ type: "username", payload: e.target.value })
             }
           />
@@ -54,10 +55,10 @@ const LoginPage = (): JSX.Element => {
           <input
             className="login-input"
             placeholder="password"
-            // value={state.password}
-            // onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            //   dispatch({ type: "password", payload: e.target.value })
-            // }
+            value={state.password}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
+              dispatch({ type: "password", payload: e.target.value })
+            }
           />
         </div>
         <button className="login-button" type="submit">

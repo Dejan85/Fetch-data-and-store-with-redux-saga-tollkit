@@ -2,7 +2,7 @@ import React from "react";
 import "./style/index.scss";
 
 //components
-import LoginPage from "./components/LoginPage";
+import LoginPage from "./components/login-page/LoginPage";
 
 function App() {
   return (
