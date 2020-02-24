@@ -1,8 +1,15 @@
 import React from "react";
-import "./App.css";
+import "./style/index.scss";
+
+//components
+import LoginPage from "./components/LoginPage";
 
 function App() {
-  return <div className="App">redy for work</div>;
+  return (
+    <div className="app">
+      <LoginPage />
+    </div>
+  );
 }
 
 export default App;
