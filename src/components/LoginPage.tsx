@@ -5,7 +5,10 @@ import {
   reducerInterface
 } from "./types";
 
-const initialState: initialStateInterface = { username: "", password: "" };
+const initialState: initialStateInterface = {
+  username: "xad",
+  password: "123"
+};
 
 function reducer(
   state: initialStateInterface,
@@ -51,10 +54,10 @@ const LoginPage = (): JSX.Element => {
           <input
             className="login-input"
             placeholder="password"
-            value={state.password}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              dispatch({ type: "password", payload: e.target.value })
-            }
+            // value={state.password}
+            // onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            //   dispatch({ type: "password", payload: e.target.value })
+            // }
           />
         </div>
         <button className="login-button" type="submit">
