@@ -12,3 +12,9 @@ export interface reducerInterface {
     username?: string;
     password?: string;
 }
+
+export interface userInterface {
+    username: string;
+    password: string;
+    rememberMe: boolean;
+}

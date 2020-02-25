@@ -15,9 +15,8 @@ const fetchDataSlice = createSlice({
     }
 });
 
-const user_login = createAction('USER_LOGIN');
+export const userSign: any = createAction('USER_LOGIN');
 
 export const { userLogin } = fetchDataSlice.actions;
-export { user_login };
 
 export default fetchDataSlice.reducer;

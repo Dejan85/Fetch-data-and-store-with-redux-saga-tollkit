@@ -1,8 +1,12 @@
 import React, { useReducer } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { userSign } from "../../redux/slice/slice";
+
 import {
   initialStateInterface,
   actionInterface,
-  reducerInterface
+  reducerInterface,
+  userInterface
 } from "./types";
 
 const initialState: initialStateInterface = {
@@ -26,15 +30,29 @@ function reducer(
 
 const LoginPage = (): JSX.Element => {
   const [state, dispatch]: [any, any] = useReducer<any>(reducer, initialState);
+  const dispatchRedux = useDispatch();
+  // const xad = useSelector(state => state);
+  // console.log(xad);
 
   // console.log(state.username);
   // console.log(state.password);
-  console.log(state);
 
   const onSubmitHandler = (e: React.SyntheticEvent<EventTarget>): void => {
     e.preventDefault();
-    console.log(state.username);
-    console.log(state.password);
+
+    const user = JSON.stringify({
+      username: state.username,
+      password: state.password,
+      rememberMe: false
+    });
+
+    // const user = {
+    //   username: state.username,
+    //   password: state.password,
+    //   rememberMe: false
+    // };
+
+    dispatchRedux(userSign(user));
   };
 
   return (

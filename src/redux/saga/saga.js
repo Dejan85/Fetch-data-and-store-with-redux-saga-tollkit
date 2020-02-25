@@ -1,27 +1,24 @@
-import { takeLatest, put } from "redux-saga/effects";
-import { userLogin, user_login } from "../slice/slice";
+import { takeLatest, put, call } from "redux-saga/effects";
+import { userLogin, userSign } from "../slice/slice";
+import { makePostReq } from "../../utils/request-utils";
+import request from "../../utils/request";
 
-function* loginUserHandler() {
+function* loginUserHandler(action) {
+  console.log(action.payload);
+
   try {
-    const url = "http://dummy.restapiexample.com/api/v1/employees";
-    let result = "";
-    yield fetch(url)
-      .then(response => {
-        return response.json();
-      })
-      .then(res => {
-        result = res;
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    const url = "http://reactor.ttweb.net:8080/api/auth/login-json";
 
-    yield put(userLogin(result));
+    const response = yield call(request, url, makePostReq(action.payload));
+    console.log(response);
+
+    yield put(userLogin(response));
   } catch (err) {
-    yield console.log(err);
+    //  yield handleApiError(e);
+    yield console.log("error xad " + err);
   }
 }
 
 export function* fetchData() {
-  yield takeLatest(user_login.type, loginUserHandler);
+  yield takeLatest(userSign.type, loginUserHandler);
 }
