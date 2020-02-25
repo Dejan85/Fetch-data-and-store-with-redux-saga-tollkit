@@ -33,7 +33,8 @@ const LoginPage = (): JSX.Element => {
 
   const onSubmitHandler = (e: React.SyntheticEvent<EventTarget>): void => {
     e.preventDefault();
-    console.log("radi");
+    console.log(state.username);
+    console.log(state.password);
   };
 
   return (
